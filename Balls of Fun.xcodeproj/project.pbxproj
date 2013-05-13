@@ -20,9 +20,9 @@
 		49F99D38173FFA3B00721563 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F99D37173FFA3B00721563 /* ViewController.m */; };
 		49F99D40173FFA9000721563 /* BallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F99D3F173FFA9000721563 /* BallView.m */; };
 		49F99D4517411DFC00721563 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49F99D4417411DFC00721563 /* iPhone.storyboard */; };
-		49F99D4717412B6700721563 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F99D4617412B6700721563 /* icon.png */; };
-		49F99D4917412C5500721563 /* icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F99D4817412C5500721563 /* icon_small.png */; };
-		49F99D4B17412CE500721563 /* icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F99D4A17412CE500721563 /* icon_retina.png */; };
+		49F99D5017412F8900721563 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F99D4D17412F8900721563 /* icon.png */; };
+		49F99D5117412F8900721563 /* icon_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F99D4E17412F8900721563 /* icon_retina.png */; };
+		49F99D5217412F8900721563 /* icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F99D4F17412F8900721563 /* icon_small.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,9 +45,9 @@
 		49F99D3E173FFA9000721563 /* BallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallView.h; sourceTree = "<group>"; };
 		49F99D3F173FFA9000721563 /* BallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallView.m; sourceTree = "<group>"; };
 		49F99D4417411DFC00721563 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		49F99D4617412B6700721563 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
-		49F99D4817412C5500721563 /* icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_small.png; path = ../icon_small.png; sourceTree = "<group>"; };
-		49F99D4A17412CE500721563 /* icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_retina.png; path = ../icon_retina.png; sourceTree = "<group>"; };
+		49F99D4D17412F8900721563 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		49F99D4E17412F8900721563 /* icon_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_retina.png; sourceTree = "<group>"; };
+		49F99D4F17412F8900721563 /* icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_small.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +108,7 @@
 		49F99D22173FFA3B00721563 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				49F99D4A17412CE500721563 /* icon_retina.png */,
-				49F99D4817412C5500721563 /* icon_small.png */,
-				49F99D4617412B6700721563 /* icon.png */,
+				49F99D4C17412F8900721563 /* Images */,
 				49F99D2A173FFA3B00721563 /* AppDelegate.h */,
 				49F99D2B173FFA3B00721563 /* AppDelegate.m */,
 				49F99D23173FFA3B00721563 /* Balls of Fun-Info.plist */,
@@ -122,6 +120,16 @@
 				49F99D31173FFA3B00721563 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49F99D4C17412F8900721563 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				49F99D4D17412F8900721563 /* icon.png */,
+				49F99D4E17412F8900721563 /* icon_retina.png */,
+				49F99D4F17412F8900721563 /* icon_small.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,9 +189,9 @@
 				49F99D32173FFA3B00721563 /* Default-568h@2x.png in Resources */,
 				49F99D35173FFA3B00721563 /* iPad.storyboard in Resources */,
 				49F99D4517411DFC00721563 /* iPhone.storyboard in Resources */,
-				49F99D4717412B6700721563 /* icon.png in Resources */,
-				49F99D4917412C5500721563 /* icon_small.png in Resources */,
-				49F99D4B17412CE500721563 /* icon_retina.png in Resources */,
+				49F99D5017412F8900721563 /* icon.png in Resources */,
+				49F99D5117412F8900721563 /* icon_retina.png in Resources */,
+				49F99D5217412F8900721563 /* icon_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
