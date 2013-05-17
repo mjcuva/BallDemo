@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BallView : UIView
-@property (nonatomic) BOOL ended;
 @property (nonatomic) BOOL animating;
 @end

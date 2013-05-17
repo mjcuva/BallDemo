@@ -7,28 +7,28 @@
 //
 
 #import "ViewController.h"
-#import "BallView.h"
+#import "GrowBallView.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
 @property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *pressRecognizer;
-@property (strong, nonatomic) BallView *currentBall;
+@property (strong, nonatomic) GrowBallView *currentBall;
 @end
 
 @implementation ViewController
 
-- (void)setCurrentBall:(BallView *)currentBall{
+- (void)setCurrentBall:(GrowBallView *)currentBall{
     _currentBall = currentBall;
 }
 
 - (IBAction)createBall:(UILongPressGestureRecognizer *)sender {
     if(sender.state == UIGestureRecognizerStateBegan){
         CGPoint location = [sender locationInView:self.view];
-        self.currentBall = [[BallView alloc] initWithFrame:CGRectMake(location.x, location.y, .5, .5)];
+        self.currentBall = [[GrowBallView alloc] initWithFrame:CGRectMake(location.x, location.y, .5, .5)];
         [self.view addSubview:self.currentBall];
-        self.currentBall.ended = NO;
+        self.currentBall.growing = NO;
     }else if(sender.state == UIGestureRecognizerStateCancelled || sender.state == UIGestureRecognizerStateEnded){
-        self.currentBall.ended = YES;
+        self.currentBall.growing = YES;
         self.currentBall = nil;
     }
 

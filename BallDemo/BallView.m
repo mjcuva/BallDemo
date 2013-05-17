@@ -37,19 +37,11 @@
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flash:)];
         [tapGesture setNumberOfTapsRequired:2];
         [self addGestureRecognizer:tapGesture];
-        
-        UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeBall:)];
-        [self addGestureRecognizer:pinchGesture];
     }
     return self;
 }
 
-- (void)setEnded:(BOOL)ended{
-    if(!ended){
-        [self growBall];
-    }
-    _ended = ended;
-}
+
 
 - (void)setSpeed:(CGFloat)speed{
     _speed = speed;
@@ -69,22 +61,7 @@
     CGContextFillPath(context);
 }
 
-- (void)growBall{
-    
-    dispatch_queue_t queue = dispatch_queue_create("Grow Ball", NULL);
-    dispatch_async(queue, ^{
-        while(!self.ended){
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [UIView animateWithDuration:0 animations:^{
-                    CGFloat width = self.frame.size.width + .5;
-                    CGFloat height = self.frame.size.height + .5;
-                    self.frame = CGRectMake(self.frame.origin.x - (.5 / 2), self.frame.origin.y - (.5 / 2), width, height);
-                    [self setNeedsDisplay];
-                }];
-            });
-        }
-    });
-}
+
 
 - (void)flickInDirection:(UIPanGestureRecognizer *)sender{
     if(sender.state == UIGestureRecognizerStateRecognized){
@@ -152,17 +129,7 @@
     }
 }
 
-- (void)resizeBall:(UIPinchGestureRecognizer *)sender{
-    if(sender.state == UIGestureRecognizerStateChanged || sender.state == UIGestureRecognizerStateRecognized){
-        CGFloat newRadius = self.frame.size.width * sender.scale;
-        if(newRadius > self.superview.frame.size.width * 2/3)
-            newRadius = self.superview.frame.size.width * 2/3;
 
-        self.frame = CGRectMake(self.frame.origin.x - ((newRadius - self.frame.size.width) / 2), self.frame.origin.y - ((newRadius - self.frame.size.height) / 2), newRadius, newRadius);
-        sender.scale = 1;
-        [self setNeedsDisplay];
-    }
-}
 
 
 @end

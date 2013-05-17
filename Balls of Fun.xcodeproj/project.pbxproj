@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49915AE41746AD9F00D8A09A /* GrowBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49915AE31746AD9F00D8A09A /* GrowBallView.m */; };
 		49F99D1C173FFA3B00721563 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F99D1B173FFA3B00721563 /* UIKit.framework */; };
 		49F99D1E173FFA3B00721563 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F99D1D173FFA3B00721563 /* Foundation.framework */; };
 		49F99D20173FFA3B00721563 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F99D1F173FFA3B00721563 /* CoreGraphics.framework */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49915AE21746AD9F00D8A09A /* GrowBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowBallView.h; sourceTree = "<group>"; };
+		49915AE31746AD9F00D8A09A /* GrowBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowBallView.m; sourceTree = "<group>"; };
 		49F99D18173FFA3B00721563 /* Balls of Fun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balls of Fun.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F99D1B173FFA3B00721563 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49F99D1D173FFA3B00721563 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,6 +103,8 @@
 				49F99D37173FFA3B00721563 /* ViewController.m */,
 				49F99D3E173FFA9000721563 /* BallView.h */,
 				49F99D3F173FFA9000721563 /* BallView.m */,
+				49915AE21746AD9F00D8A09A /* GrowBallView.h */,
+				49915AE31746AD9F00D8A09A /* GrowBallView.m */,
 				49F99D22173FFA3B00721563 /* Supporting Files */,
 			);
 			path = BallDemo;
@@ -206,6 +211,7 @@
 				49F99D2C173FFA3B00721563 /* AppDelegate.m in Sources */,
 				49F99D38173FFA3B00721563 /* ViewController.m in Sources */,
 				49F99D40173FFA9000721563 /* BallView.m in Sources */,
+				49915AE41746AD9F00D8A09A /* GrowBallView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
