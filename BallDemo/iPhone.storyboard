@@ -35,15 +35,13 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="175" y="67"/>
+            <point key="canvasLocation" x="53" y="127"/>
         </scene>
     </scenes>
     <classes>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="clearBalls:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="createBall:" candidateClass="UILongPressGestureRecognizer"/>
                 <relationship kind="outlet" name="pressRecognizer" candidateClass="UILongPressGestureRecognizer"/>
                 <relationship kind="outlet" name="swipeRecognizer" candidateClass="UISwipeGestureRecognizer"/>
             </relationships>

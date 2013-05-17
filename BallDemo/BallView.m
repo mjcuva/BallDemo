@@ -155,8 +155,8 @@
 - (void)resizeBall:(UIPinchGestureRecognizer *)sender{
     if(sender.state == UIGestureRecognizerStateChanged || sender.state == UIGestureRecognizerStateRecognized){
         CGFloat newRadius = self.frame.size.width * sender.scale;
-        if(newRadius > 800)
-            newRadius = 800;
+        if(newRadius > self.superview.frame.size.width * 2/3)
+            newRadius = self.superview.frame.size.width * 2/3;
 
         self.frame = CGRectMake(self.frame.origin.x - ((newRadius - self.frame.size.width) / 2), self.frame.origin.y - ((newRadius - self.frame.size.height) / 2), newRadius, newRadius);
         sender.scale = 1;
