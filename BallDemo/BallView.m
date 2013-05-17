@@ -16,6 +16,8 @@
 
 @implementation BallView
 
+#pragma mark - Properties
+
 - (UIColor *)color{
     if(!_color){
         NSArray *colors = @[[UIColor greenColor], [UIColor redColor], [UIColor blueColor], [UIColor purpleColor], [UIColor orangeColor], [UIColor yellowColor], [UIColor cyanColor]];
@@ -24,6 +26,16 @@
     }
     return _color;
 }
+
+- (void)setSpeed:(CGFloat)speed{
+    _speed = speed;
+    if(_speed > 0){
+        [self move];
+    }
+}
+
+
+#pragma mark - Initialization
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -41,18 +53,6 @@
     return self;
 }
 
-
-
-- (void)setSpeed:(CGFloat)speed{
-    _speed = speed;
-    if(_speed > 0){
-        [self move];
-    }
-}
-
-
-
-
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -62,6 +62,7 @@
 }
 
 
+#pragma mark - Gestures
 
 - (void)flickInDirection:(UIPanGestureRecognizer *)sender{
     if(sender.state == UIGestureRecognizerStateRecognized){
@@ -77,6 +78,13 @@
             self.direction += M_PI;
         }
         self.speed = distance;
+    }
+}
+
+- (void)flash:(UITapGestureRecognizer *)sender{
+    if(sender.state == UIGestureRecognizerStateRecognized){
+        self.color = nil;
+        [self setNeedsDisplay];
     }
 }
 
@@ -122,12 +130,7 @@
     });
 }
 
-- (void)flash:(UITapGestureRecognizer *)sender{
-    if(sender.state == UIGestureRecognizerStateRecognized){
-        self.color = nil;
-        [self setNeedsDisplay];
-    }
-}
+
 
 
 
