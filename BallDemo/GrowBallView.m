@@ -27,6 +27,8 @@
     _growing = growing;
 }
 
+#define GROWTH_FACTOR .5
+
 - (void)growBall{
     
     dispatch_queue_t queue = dispatch_queue_create("Grow Ball", NULL);
@@ -34,9 +36,8 @@
         while(self.growing){
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [UIView animateWithDuration:0 animations:^{
-                    CGFloat width = self.frame.size.width + .5;
-                    CGFloat height = self.frame.size.height + .5;
-                    self.frame = CGRectMake(self.frame.origin.x - (.5 / 2), self.frame.origin.y - (.5 / 2), width, height);
+                    CGFloat diameter = self.frame.size.width + .5;
+                    self.frame = CGRectMake(self.frame.origin.x - (GROWTH_FACTOR / 2), self.frame.origin.y - (GROWTH_FACTOR / 2), diameter, diameter);
                     [self setNeedsDisplay];
                 }];
             });
