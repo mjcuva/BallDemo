@@ -21,7 +21,7 @@
 }
 
 - (void)setGrowing:(BOOL)growing{
-    if(!growing){
+    if(growing){
         [self growBall];
     }
     _growing = growing;
@@ -31,7 +31,7 @@
     
     dispatch_queue_t queue = dispatch_queue_create("Grow Ball", NULL);
     dispatch_async(queue, ^{
-        while(!self.growing){
+        while(self.growing){
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [UIView animateWithDuration:0 animations:^{
                     CGFloat width = self.frame.size.width + .5;

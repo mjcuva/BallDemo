@@ -26,9 +26,9 @@
         CGPoint location = [sender locationInView:self.view];
         self.currentBall = [[GrowBallView alloc] initWithFrame:CGRectMake(location.x, location.y, .5, .5)];
         [self.view addSubview:self.currentBall];
-        self.currentBall.growing = NO;
-    }else if(sender.state == UIGestureRecognizerStateCancelled || sender.state == UIGestureRecognizerStateEnded){
         self.currentBall.growing = YES;
+    }else if(sender.state == UIGestureRecognizerStateCancelled || sender.state == UIGestureRecognizerStateEnded){
+        self.currentBall.growing = NO;
         self.currentBall = nil;
     }
 
