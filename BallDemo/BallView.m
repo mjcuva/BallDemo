@@ -9,7 +9,7 @@
 #import "BallView.h"
 
 @interface BallView()
-@property (nonatomic) CGFloat direction; // Angle
+@property (nonatomic) CGFloat direction; // Angle in radians
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic) CGFloat speed;
 @end
