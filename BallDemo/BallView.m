@@ -109,20 +109,20 @@
             if(loopCount < 300)
                 increaseFactor += .08;
             
-            if(self.frame.origin.x < self.superview.frame.origin.x - OFFSET){
+            if(self.frame.origin.x < self.superview.bounds.origin.x - OFFSET){
                 self.direction *= M_PI;
-                self.frame = CGRectMake(self.superview.frame.origin.x - OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-            }else if(self.frame.origin.x + self.frame.size.width > self.superview.frame.size.width + OFFSET){
+                self.frame = CGRectMake(self.superview.bounds.origin.x - OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+            }else if(self.frame.origin.x + self.frame.size.width > self.superview.bounds.size.width + OFFSET){
                 self.direction *= M_PI;
-                self.frame = CGRectMake(self.superview.frame.size.width - self.frame.size.width + OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+                self.frame = CGRectMake(self.superview.bounds.size.width - self.frame.size.width + OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
             }
             
-            if(self.frame.origin.y < self.superview.frame.origin.y - OFFSET){
+            if(self.frame.origin.y < self.superview.bounds.origin.y - OFFSET){
                 self.direction *= M_PI;
-                self.frame = CGRectMake(self.frame.origin.x, self.superview.frame.origin.y - OFFSET, self.frame.size.width, self.frame.size.height);
-            }else if(self.frame.origin.y + self.frame.size.height > self.superview.frame.size.height + OFFSET){
+                self.frame = CGRectMake(self.frame.origin.x, self.superview.bounds.origin.y - OFFSET, self.frame.size.width, self.frame.size.height);
+            }else if(self.frame.origin.y + self.frame.size.height > self.superview.bounds.size.height + OFFSET){
                 self.direction *= M_PI;
-                self.frame = CGRectMake(self.frame.origin.x, self.superview.frame.size.height - self.frame.size.height + OFFSET, self.frame.size.width, self.frame.size.height);
+                self.frame = CGRectMake(self.frame.origin.x, self.superview.bounds.size.height - self.frame.size.height + OFFSET, self.frame.size.width, self.frame.size.height);
             }
 
         }
