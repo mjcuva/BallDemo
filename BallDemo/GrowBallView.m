@@ -15,6 +15,8 @@
     if(self){
         UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeBall:)];
         [self addGestureRecognizer:pinchGesture];
+        
+        [self.panGesture requireGestureRecognizerToFail:pinchGesture];
     }
     
     return self;
@@ -59,13 +61,16 @@
 
 - (void)removeBall{
     
-    [UIView animateWithDuration:.8 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        self.frame = CGRectMake((self.superview.bounds.size.width / 2) - self.bounds.size.width / 2, -self.frame.size.height, 0, 0);
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.speed = 0;
+        self.frame = CGRectMake((self.superview.bounds.size.width / 2) - self.bounds.size.width / 2, -self.frame.size.height, self.frame.size.width, self.frame.size.height);
     } completion:^(BOOL success){
         [self removeFromSuperview];
     }];
     
 }
+
+
 
 
 

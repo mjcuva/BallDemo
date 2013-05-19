@@ -37,9 +37,7 @@
 - (IBAction)clearBalls:(UISwipeGestureRecognizer *)sender {
     for(id view in self.view.subviews){
         if([view isKindOfClass:[GrowBallView class]]){
-            [UIView animateWithDuration:1 animations:^{
-                [view removeBall];
-            }];
+            [view removeBall];
         }
     }
 }

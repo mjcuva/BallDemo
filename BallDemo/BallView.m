@@ -7,11 +7,11 @@
 //
 
 #import "BallView.h"
+#import "PressAndMoveGestureRecognizer.h"
 
 @interface BallView()
 @property (nonatomic) CGFloat direction; // Angle in radians
 @property (nonatomic, strong) UIColor *color;
-@property (nonatomic) CGFloat speed;
 @end
 
 @implementation BallView
@@ -41,12 +41,19 @@
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         
-        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(flickInDirection:)];
-        [self addGestureRecognizer:panGesture];
+        self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(flickInDirection:)];
+        [self addGestureRecognizer:self.panGesture];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
-        [tapGesture setNumberOfTapsRequired:2];
-        [self addGestureRecognizer:tapGesture];
+        self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
+        [self.tapGesture setNumberOfTapsRequired:2];
+        [self addGestureRecognizer:self.tapGesture];
+        
+        PressAndMoveGestureRecognizer *moveGesture = [[PressAndMoveGestureRecognizer alloc] initWithTarget:self action:@selector(moveBallWithTouch:)];
+        [self addGestureRecognizer:moveGesture];
+        
+        [moveGesture requireGestureRecognizerToFail:self.panGesture];
+//        [panGesture requireGestureRecognizerToFail:moveGesture];
+        [moveGesture requireGestureRecognizerToFail:self.tapGesture];
     }
     return self;
 }
@@ -91,8 +98,8 @@
 - (void)move{
     dispatch_queue_t movementQueue = dispatch_queue_create("Move", NULL);
     dispatch_async(movementQueue, ^{
-        int loopCount = 500;
-        CGFloat increaseFactor = 1.1;
+        int __block loopCount = 500;
+        CGFloat __block increaseFactor = 1.1;
         while(loopCount > 0){
             dispatch_sync(dispatch_get_main_queue(), ^{
                 @try{
@@ -101,31 +108,40 @@
                 }@catch (NSException* ex) {
                     // catch just to prevent crash
                 }
+                
+                loopCount -= 1;
+                if(loopCount < 300)
+                    increaseFactor += .08;
+                
+                if(self.frame.origin.x < self.superview.bounds.origin.x - OFFSET){
+                    self.direction *= M_PI;
+                    self.frame = CGRectMake(self.superview.bounds.origin.x - OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+                }else if(self.frame.origin.x + self.frame.size.width > self.superview.bounds.size.width + OFFSET){
+                    self.direction *= M_PI;
+                    self.frame = CGRectMake(self.superview.bounds.size.width - self.frame.size.width + OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+                }
+                
+                if(self.frame.origin.y < self.superview.bounds.origin.y - OFFSET){
+                    self.direction *= M_PI;
+                }else if(self.frame.origin.y + self.frame.size.height > self.superview.bounds.size.height + OFFSET){
+                    self.direction *= M_PI;
+                    self.frame = CGRectMake(self.frame.origin.x, self.superview.bounds.size.height - self.frame.size.height + OFFSET, self.frame.size.width, self.frame.size.height);
+                }
             });
-            loopCount -= 1;
-            if(loopCount < 300)
-                increaseFactor += .08;
-            
-            if(self.frame.origin.x < self.superview.bounds.origin.x - OFFSET){
-                self.direction *= M_PI;
-                self.frame = CGRectMake(self.superview.bounds.origin.x - OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-            }else if(self.frame.origin.x + self.frame.size.width > self.superview.bounds.size.width + OFFSET){
-                self.direction *= M_PI;
-                self.frame = CGRectMake(self.superview.bounds.size.width - self.frame.size.width + OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-            }
-            
-            if(self.frame.origin.y < self.superview.bounds.origin.y - OFFSET){
-                self.direction *= M_PI;
-                self.frame = CGRectMake(self.frame.origin.x, self.superview.bounds.origin.y - OFFSET, self.frame.size.width, self.frame.size.height);
-            }else if(self.frame.origin.y + self.frame.size.height > self.superview.bounds.size.height + OFFSET){
-                self.direction *= M_PI;
-                self.frame = CGRectMake(self.frame.origin.x, self.superview.bounds.size.height - self.frame.size.height + OFFSET, self.frame.size.width, self.frame.size.height);
-            }
 
         }
     });
 }
 
+- (void)moveBallWithTouch:(PressAndMoveGestureRecognizer *)sender{
+    if(sender.state == UIGestureRecognizerStateRecognized || sender.state == UIGestureRecognizerStateChanged){
+        CGPoint translation = sender.translation;
+        CGFloat x = translation.x;
+        CGFloat y = translation.y;
+        self.frame = CGRectMake(self.frame.origin.x + x, self.frame.origin.y + y, self.frame.size.width, self.frame.size.height);
+        sender.translation = CGPointZero;
+    }
+}
 
 
 @end
