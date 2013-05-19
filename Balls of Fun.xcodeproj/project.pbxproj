@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		497E433017485E75000600B3 /* PressAndMoveGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 497E432F17485E75000600B3 /* PressAndMoveGestureRecognizer.m */; };
 		49915AE41746AD9F00D8A09A /* GrowBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49915AE31746AD9F00D8A09A /* GrowBallView.m */; };
 		49F99D1C173FFA3B00721563 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F99D1B173FFA3B00721563 /* UIKit.framework */; };
 		49F99D1E173FFA3B00721563 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F99D1D173FFA3B00721563 /* Foundation.framework */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		497E432E17485E75000600B3 /* PressAndMoveGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PressAndMoveGestureRecognizer.h; sourceTree = "<group>"; };
+		497E432F17485E75000600B3 /* PressAndMoveGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PressAndMoveGestureRecognizer.m; sourceTree = "<group>"; };
 		49915AE21746AD9F00D8A09A /* GrowBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowBallView.h; sourceTree = "<group>"; };
 		49915AE31746AD9F00D8A09A /* GrowBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowBallView.m; sourceTree = "<group>"; };
 		49F99D18173FFA3B00721563 /* Balls of Fun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balls of Fun.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +106,8 @@
 				49F99D37173FFA3B00721563 /* ViewController.m */,
 				49F99D3E173FFA9000721563 /* BallView.h */,
 				49F99D3F173FFA9000721563 /* BallView.m */,
+				497E432E17485E75000600B3 /* PressAndMoveGestureRecognizer.h */,
+				497E432F17485E75000600B3 /* PressAndMoveGestureRecognizer.m */,
 				49915AE21746AD9F00D8A09A /* GrowBallView.h */,
 				49915AE31746AD9F00D8A09A /* GrowBallView.m */,
 				49F99D22173FFA3B00721563 /* Supporting Files */,
@@ -212,6 +217,7 @@
 				49F99D38173FFA3B00721563 /* ViewController.m in Sources */,
 				49F99D40173FFA9000721563 /* BallView.m in Sources */,
 				49915AE41746AD9F00D8A09A /* GrowBallView.m in Sources */,
+				497E433017485E75000600B3 /* PressAndMoveGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
