@@ -93,7 +93,6 @@
     dispatch_async(movementQueue, ^{
         int loopCount = 500;
         CGFloat increaseFactor = 1.1;
-        self.animating = YES;
         while(loopCount > 0){
             dispatch_sync(dispatch_get_main_queue(), ^{
                 @try{
@@ -124,7 +123,6 @@
             }
 
         }
-        self.animating = NO;
     });
 }
 
