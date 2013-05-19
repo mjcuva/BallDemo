@@ -10,4 +10,6 @@
 
 @interface GrowBallView : BallView
 @property (nonatomic) BOOL growing;
+
+- (void) removeBall;
 @end

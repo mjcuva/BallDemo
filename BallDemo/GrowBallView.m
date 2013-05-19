@@ -57,6 +57,16 @@
     }
 }
 
+- (void)removeBall{
+    
+    [UIView animateWithDuration:.8 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.frame = CGRectMake((self.superview.bounds.size.width / 2) - self.bounds.size.width / 2, -self.frame.size.height, 0, 0);
+    } completion:^(BOOL success){
+        [self removeFromSuperview];
+    }];
+    
+}
+
 
 
 @end
