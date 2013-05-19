@@ -35,14 +35,12 @@
 }
 
 - (IBAction)clearBalls:(UISwipeGestureRecognizer *)sender {
-    for(BallView *view in self.view.subviews){
-        [UIView animateWithDuration:.8 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            if(!view.animating)
-                view.frame = CGRectMake(self.view.frame.size.width / 2, -view.frame.size.height, 0, 0);
-        } completion:^(BOOL success){
-            if(!view.animating)
-                [view removeFromSuperview];
-        }];
+    for(id view in self.view.subviews){
+        if([view isKindOfClass:[GrowBallView class]]){
+            [UIView animateWithDuration:1 animations:^{
+                [view removeBall];
+            }];
+        }
     }
 }
 
