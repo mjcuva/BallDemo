@@ -29,9 +29,7 @@
 
 - (void)setSpeed:(CGFloat)speed{
     _speed = speed;
-    if(_speed > 0){
-        [self move];
-    }
+    [self move];
 }
 
 
@@ -46,7 +44,7 @@
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(flickInDirection:)];
         [self addGestureRecognizer:panGesture];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flash:)];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
         [tapGesture setNumberOfTapsRequired:2];
         [self addGestureRecognizer:tapGesture];
     }
@@ -81,7 +79,7 @@
     }
 }
 
-- (void)flash:(UITapGestureRecognizer *)sender{
+- (void)changeColor:(UITapGestureRecognizer *)sender{
     if(sender.state == UIGestureRecognizerStateRecognized){
         self.color = nil;
         [self setNeedsDisplay];
@@ -129,9 +127,6 @@
         self.animating = NO;
     });
 }
-
-
-
 
 
 
