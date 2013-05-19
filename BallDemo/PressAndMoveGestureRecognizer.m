@@ -29,17 +29,22 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesMoved:touches withEvent:event];
-    UIWindow *win = [self.view window];
-    CGPoint point = [touches.anyObject locationInView:win];
-    self.translation = CGPointMake(point.x - self.previous.x, point.y - self.previous.y);
-    self.previous = point;
-    self.state = UIGestureRecognizerStateChanged;
+    if([touches count] > 1){
+        self.state = UIGestureRecognizerStateFailed;
+    }else{
+        UIWindow *win = [self.view window];
+        CGPoint point = [touches.anyObject locationInView:win];
+        self.translation = CGPointMake(point.x - self.previous.x, point.y - self.previous.y);
+        self.previous = point;
+        self.state = UIGestureRecognizerStateChanged;
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesEnded:touches withEvent:event];
-    
+    self.state = UIGestureRecognizerStateRecognized;
 }
+
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesCancelled:touches withEvent:event];
     self.translation = CGPointZero;
