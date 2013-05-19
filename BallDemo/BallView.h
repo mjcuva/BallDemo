@@ -12,5 +12,4 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property (nonatomic) CGFloat speed;
-//- (void)removeBall;
 @end
