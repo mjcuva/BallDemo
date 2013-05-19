@@ -12,4 +12,5 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property (nonatomic) CGFloat speed;
+@property (nonatomic) BOOL bounceTop;
 @end

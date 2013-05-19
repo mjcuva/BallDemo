@@ -43,7 +43,7 @@
         
         self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(flickInDirection:)];
         [self addGestureRecognizer:self.panGesture];
-        
+
         self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
         [self.tapGesture setNumberOfTapsRequired:2];
         [self addGestureRecognizer:self.tapGesture];
@@ -52,8 +52,9 @@
         [self addGestureRecognizer:moveGesture];
         
         [moveGesture requireGestureRecognizerToFail:self.panGesture];
-//        [panGesture requireGestureRecognizerToFail:moveGesture];
         [moveGesture requireGestureRecognizerToFail:self.tapGesture];
+        
+        self.bounceTop = YES;
     }
     return self;
 }
@@ -123,6 +124,8 @@
                 
                 if(self.frame.origin.y < self.superview.bounds.origin.y - OFFSET){
                     self.direction *= M_PI;
+                    if(self.bounceTop)
+                        self.frame = CGRectMake(self.frame.origin.x, self.superview.frame.origin.y - OFFSET, self.frame.size.width, self.frame.size.height);
                 }else if(self.frame.origin.y + self.frame.size.height > self.superview.bounds.size.height + OFFSET){
                     self.direction *= M_PI;
                     self.frame = CGRectMake(self.frame.origin.x, self.superview.bounds.size.height - self.frame.size.height + OFFSET, self.frame.size.width, self.frame.size.height);
