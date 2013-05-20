@@ -15,8 +15,6 @@
     if(self){
         UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(resizeBall:)];
         [self addGestureRecognizer:pinchGesture];
-        
-        [self.panGesture requireGestureRecognizerToFail:pinchGesture];
     }
     
     return self;
