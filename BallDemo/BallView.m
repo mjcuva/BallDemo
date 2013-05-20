@@ -74,12 +74,14 @@
     }
 }
 
+#define SPEED_MODIFIER 3
+
 - (void)moveBallWithTouch:(PressAndMoveGestureRecognizer *)sender{
     if(sender.state == UIGestureRecognizerStateRecognized || sender.state == UIGestureRecognizerStateChanged){
         if(sender.flick){
             CGPoint translation = sender.translation;
-            CGFloat x = translation.x * 4;
-            CGFloat y = translation.y * 4;
+            CGFloat x = translation.x * SPEED_MODIFIER;
+            CGFloat y = translation.y * SPEED_MODIFIER;
             CGFloat distance = sqrtf(x * x + y * y);
             
             self.direction = atan(translation.y/translation.x);
