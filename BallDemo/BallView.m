@@ -41,14 +41,14 @@
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
 
-        self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
-        [self.tapGesture setNumberOfTapsRequired:2];
-        [self addGestureRecognizer:self.tapGesture];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
+        [tapGesture setNumberOfTapsRequired:2];
+        [self addGestureRecognizer:tapGesture];
         
         PressAndMoveGestureRecognizer *moveGesture = [[PressAndMoveGestureRecognizer alloc] initWithTarget:self action:@selector(moveBallWithTouch:)];
         [self addGestureRecognizer:moveGesture];
         
-        [moveGesture requireGestureRecognizerToFail:self.tapGesture];
+        [moveGesture requireGestureRecognizerToFail:tapGesture];
         
         self.bounceTop = YES;
     }
