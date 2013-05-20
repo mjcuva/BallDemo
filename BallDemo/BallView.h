@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PressAndMoveGestureRecognizer.h"
 
 @interface BallView : UIView
-@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
-@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property (nonatomic) CGFloat speed;
 @property (nonatomic) BOOL bounceTop;
 @end
