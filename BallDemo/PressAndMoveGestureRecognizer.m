@@ -24,6 +24,7 @@
     }else{
         self.previous = self.initial = [touches.anyObject locationInView:[self.view window]];
         self.start = [NSDate date];
+        self.state = UIGestureRecognizerStatePossible;
     }
 }
 
@@ -35,14 +36,24 @@
         UIWindow *win = [self.view window];
         CGPoint point = [touches.anyObject locationInView:win];
         self.translation = CGPointMake(point.x - self.previous.x, point.y - self.previous.y);
-        self.previous = point;
+        self.location = self.previous = point;
         self.state = UIGestureRecognizerStateChanged;
+        if([[NSDate date] timeIntervalSinceDate:self.start] > .5){
+            self.flick = NO;
+        }else{
+            self.flick = YES;
+        }
     }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesEnded:touches withEvent:event];
     self.state = UIGestureRecognizerStateRecognized;
+    if([[NSDate date] timeIntervalSinceDate:self.start] > .5){
+        self.flick = NO;
+    }else{
+        self.flick = YES;
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{

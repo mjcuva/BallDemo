@@ -10,4 +10,6 @@
 
 @interface PressAndMoveGestureRecognizer : UIGestureRecognizer
 @property (nonatomic) CGPoint translation;
+@property (nonatomic) BOOL flick;
+@property (nonatomic) CGPoint location;
 @end

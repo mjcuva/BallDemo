@@ -40,9 +40,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
-        
-        self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(flickInDirection:)];
-        [self addGestureRecognizer:self.panGesture];
 
         self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeColor:)];
         [self.tapGesture setNumberOfTapsRequired:2];
@@ -51,7 +48,6 @@
         PressAndMoveGestureRecognizer *moveGesture = [[PressAndMoveGestureRecognizer alloc] initWithTarget:self action:@selector(moveBallWithTouch:)];
         [self addGestureRecognizer:moveGesture];
         
-        [moveGesture requireGestureRecognizerToFail:self.panGesture];
         [moveGesture requireGestureRecognizerToFail:self.tapGesture];
         
         self.bounceTop = YES;
@@ -70,27 +66,39 @@
 
 #pragma mark - Gestures
 
-- (void)flickInDirection:(UIPanGestureRecognizer *)sender{
-    if(sender.state == UIGestureRecognizerStateRecognized){
-        CGPoint translation = [sender translationInView:self.superview];
-        CGFloat x = translation.x * 4;
-        CGFloat y = translation.y * 4;
-        CGFloat distance = sqrtf(x * x + y * y);
-        
-        self.direction = atan(translation.y/translation.x);
-        
-        // -x and x produce same atan direction
-        if(translation.x < 0){
-            self.direction += M_PI;
-        }
-        self.speed = distance;
-    }
-}
 
 - (void)changeColor:(UITapGestureRecognizer *)sender{
     if(sender.state == UIGestureRecognizerStateRecognized){
         self.color = nil;
         [self setNeedsDisplay];
+    }
+}
+
+- (void)moveBallWithTouch:(PressAndMoveGestureRecognizer *)sender{
+    if(sender.state == UIGestureRecognizerStateRecognized || sender.state == UIGestureRecognizerStateChanged){
+        if(sender.flick){
+            CGPoint translation = sender.translation;
+            CGFloat x = translation.x * 4;
+            CGFloat y = translation.y * 4;
+            CGFloat distance = sqrtf(x * x + y * y);
+            
+            self.direction = atan(translation.y/translation.x);
+            
+            // -x and x produce same atan direction
+            if(translation.x < 0){
+                self.direction += M_PI;
+            }
+            self.speed = distance;
+        }else{
+            self.speed = 0;
+            CGPoint location = sender.location;
+            CGFloat x = location.x;
+            CGFloat y = location.y;
+            [UIView animateWithDuration:1 animations:^{
+                self.frame = CGRectMake(x - self.frame.size.width / 2, y - self.frame.size.height / 2, self.frame.size.width, self.frame.size.height);
+            }];
+            sender.translation = CGPointZero;
+        }
     }
 }
 
@@ -101,7 +109,8 @@
     dispatch_async(movementQueue, ^{
         int __block loopCount = 500;
         CGFloat __block increaseFactor = 1.1;
-        while(loopCount > 0){
+        while(loopCount > 0 && self.speed > 0){
+//            NSLog(@"%f", self.speed);
             dispatch_sync(dispatch_get_main_queue(), ^{
                 @try{
                     self.frame = CGRectMake(self.frame.origin.x + (cos(self.direction) * self.speed / (100 * increaseFactor)), self.frame.origin.y + (sin(self.direction) * self.speed / (100 * increaseFactor)), self.frame.size.width, self.frame.size.height);
@@ -135,16 +144,5 @@
         }
     });
 }
-
-- (void)moveBallWithTouch:(PressAndMoveGestureRecognizer *)sender{
-    if(sender.state == UIGestureRecognizerStateRecognized || sender.state == UIGestureRecognizerStateChanged){
-        CGPoint translation = sender.translation;
-        CGFloat x = translation.x;
-        CGFloat y = translation.y;
-        self.frame = CGRectMake(self.frame.origin.x + x, self.frame.origin.y + y, self.frame.size.width, self.frame.size.height);
-        sender.translation = CGPointZero;
-    }
-}
-
 
 @end
