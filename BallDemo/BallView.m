@@ -94,11 +94,7 @@
         }else{
             self.speed = 0;
             CGPoint location = sender.location;
-            CGFloat x = location.x;
-            CGFloat y = location.y;
-            [UIView animateWithDuration:1 animations:^{
-                self.frame = CGRectMake(x - self.frame.size.width / 2, y - self.frame.size.height / 2, self.frame.size.width, self.frame.size.height);
-            }];
+            self.center = location;
             sender.translation = CGPointZero;
         }
     }
