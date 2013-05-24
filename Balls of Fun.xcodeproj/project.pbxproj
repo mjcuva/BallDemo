@@ -73,7 +73,7 @@
 		49F99D0F173FFA3B00721563 = {
 			isa = PBXGroup;
 			children = (
-				49F99D21173FFA3B00721563 /* BallDemo */,
+				49F99D21173FFA3B00721563 /* Balls of Fun */,
 				49F99D1A173FFA3B00721563 /* Frameworks */,
 				49F99D19173FFA3B00721563 /* Products */,
 			);
@@ -97,7 +97,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		49F99D21173FFA3B00721563 /* BallDemo */ = {
+		49F99D21173FFA3B00721563 /* Balls of Fun */ = {
 			isa = PBXGroup;
 			children = (
 				49F99D4417411DFC00721563 /* iPhone.storyboard */,
@@ -112,6 +112,7 @@
 				49915AE31746AD9F00D8A09A /* GrowBallView.m */,
 				49F99D22173FFA3B00721563 /* Supporting Files */,
 			);
+			name = "Balls of Fun";
 			path = BallDemo;
 			sourceTree = "<group>";
 		};
