@@ -1,4 +1,4 @@
-BallDemo
+Balls of Fun
 ========
 
 Messing with Gesture Recognizers and Core Animation in iOS.  Not extremely useful, just kinda fun.
