@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		497E433017485E75000600B3 /* PressAndMoveGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 497E432F17485E75000600B3 /* PressAndMoveGestureRecognizer.m */; };
 		49915AE41746AD9F00D8A09A /* GrowBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49915AE31746AD9F00D8A09A /* GrowBallView.m */; };
+		49E245311750651100ECD31B /* WallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E245301750651100ECD31B /* WallView.m */; };
 		49F99D1C173FFA3B00721563 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F99D1B173FFA3B00721563 /* UIKit.framework */; };
 		49F99D1E173FFA3B00721563 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F99D1D173FFA3B00721563 /* Foundation.framework */; };
 		49F99D20173FFA3B00721563 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F99D1F173FFA3B00721563 /* CoreGraphics.framework */; };
@@ -32,6 +33,8 @@
 		497E432F17485E75000600B3 /* PressAndMoveGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PressAndMoveGestureRecognizer.m; sourceTree = "<group>"; };
 		49915AE21746AD9F00D8A09A /* GrowBallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowBallView.h; sourceTree = "<group>"; };
 		49915AE31746AD9F00D8A09A /* GrowBallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowBallView.m; sourceTree = "<group>"; };
+		49E2452F1750651100ECD31B /* WallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallView.h; sourceTree = "<group>"; };
+		49E245301750651100ECD31B /* WallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallView.m; sourceTree = "<group>"; };
 		49F99D18173FFA3B00721563 /* Balls of Fun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Balls of Fun.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F99D1B173FFA3B00721563 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49F99D1D173FFA3B00721563 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +107,8 @@
 				49F99D33173FFA3B00721563 /* iPad.storyboard */,
 				49F99D36173FFA3B00721563 /* ViewController.h */,
 				49F99D37173FFA3B00721563 /* ViewController.m */,
+				49E2452F1750651100ECD31B /* WallView.h */,
+				49E245301750651100ECD31B /* WallView.m */,
 				49F99D3E173FFA9000721563 /* BallView.h */,
 				49F99D3F173FFA9000721563 /* BallView.m */,
 				497E432E17485E75000600B3 /* PressAndMoveGestureRecognizer.h */,
@@ -219,6 +224,7 @@
 				49F99D40173FFA9000721563 /* BallView.m in Sources */,
 				49915AE41746AD9F00D8A09A /* GrowBallView.m in Sources */,
 				497E433017485E75000600B3 /* PressAndMoveGestureRecognizer.m in Sources */,
+				49E245311750651100ECD31B /* WallView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

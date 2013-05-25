@@ -123,6 +123,7 @@
                 if(loopCount < 300)
                     increaseFactor += .08;
                 
+                // TODO: Change bounce to be off walls instead of edge
                 if(self.frame.origin.x < self.superview.bounds.origin.x - OFFSET){
                     self.direction *= M_PI;
                     self.frame = CGRectMake(self.superview.bounds.origin.x - OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);

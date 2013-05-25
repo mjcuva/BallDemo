@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "GrowBallView.h"
+#import "WallView.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
@@ -16,6 +17,22 @@
 @end
 
 @implementation ViewController
+
+#define WALL_WIDTH 15
+
+- (void)viewDidAppear:(BOOL)animated{
+    WallView *left = [[WallView alloc] initWithFrame:CGRectMake(0, 0, WALL_WIDTH, self.view.frame.size.height)];
+    [self.view addSubview:left];
+    
+    WallView *right = [[WallView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - WALL_WIDTH, 0,WALL_WIDTH, [self.view window].frame.size.height)];
+    [self.view addSubview:right];
+    
+    WallView *top = [[WallView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, WALL_WIDTH)];
+    [self.view addSubview:top];
+    
+    WallView *bottom = [[WallView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - WALL_WIDTH, self.view.frame.size.width, WALL_WIDTH)];
+    [self.view addSubview:bottom];
+}
 
 - (void)setCurrentBall:(GrowBallView *)currentBall{
     _currentBall = currentBall;
