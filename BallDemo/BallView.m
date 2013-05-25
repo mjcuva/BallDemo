@@ -10,7 +10,6 @@
 #import "PressAndMoveGestureRecognizer.h"
 
 @interface BallView()
-@property (nonatomic) CGFloat direction; // Angle in radians
 @property (nonatomic, strong) UIColor *color;
 @end
 
@@ -29,7 +28,8 @@
 
 - (void)setSpeed:(CGFloat)speed{
     _speed = speed;
-    [self move];
+    if(_speed > 0)
+        [self move];
 }
 
 
@@ -100,6 +100,8 @@
     }
 }
 
+#pragma mark - Movement
+
 #define OFFSET 50
 
 - (void)move{
@@ -137,10 +139,39 @@
                     self.direction *= M_PI;
                     self.frame = CGRectMake(self.frame.origin.x, self.superview.bounds.size.height - self.frame.size.height + OFFSET, self.frame.size.width, self.frame.size.height);
                 }
+                
+                [self checkCollisions];
             });
 
         }
+        self.speed = 0;
     });
+}
+
+#define BALL_INCREASE_FACTOR 1
+
+- (void) checkCollisions{
+    for (id view in self.superview.subviews){
+        if([view isKindOfClass:[BallView class]]){
+            BallView *ball = (BallView *)view;
+            // Use pythagorean theorem to find the largest square that fits inside the circle.
+            CGFloat insetSide = sqrtf((ball.frame.size.width * ball.frame.size.width) / 2);
+            CGFloat offset = (ball.frame.size.height - insetSide) / 2;
+            CGRect collisionMask = CGRectMake(ball.frame.origin.x + offset, ball.frame.origin.y + offset, insetSide, insetSide);
+            if(CGRectIntersectsRect(collisionMask, self.frame) && self != ball){
+                // Adjust frame to never be inside the collisionFrame
+                // TODO: Fix Frame when balls collide to prevent getting stuck on each other
+                ball.direction = self.direction;
+                self.direction *= M_PI;
+                NSLog(@"Ball Speed: %f", ball.speed);
+                if(ball.speed == 0 || ball.speed < 100){
+                    ball.speed = self.speed;
+                }else{
+//                    ball.speed *= BALL_INCREASE_FACTOR;
+                }
+            }
+        }
+    }
 }
 
 @end
