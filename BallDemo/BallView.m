@@ -7,6 +7,7 @@
 //
 
 #import "BallView.h"
+#import "WallView.h"
 #import "PressAndMoveGestureRecognizer.h"
 
 @interface BallView()
@@ -122,25 +123,7 @@
                 loopCount -= 1;
                 if(loopCount < 300)
                     increaseFactor += .08;
-                
-                // TODO: Change bounce to be off walls instead of edge
-                if(self.frame.origin.x < self.superview.bounds.origin.x - OFFSET){
-                    self.direction *= M_PI;
-                    self.frame = CGRectMake(self.superview.bounds.origin.x - OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-                }else if(self.frame.origin.x + self.frame.size.width > self.superview.bounds.size.width + OFFSET){
-                    self.direction *= M_PI;
-                    self.frame = CGRectMake(self.superview.bounds.size.width - self.frame.size.width + OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-                }
-                
-                if(self.frame.origin.y < self.superview.bounds.origin.y - OFFSET){
-                    self.direction *= M_PI;
-                    if(self.bounceTop)
-                        self.frame = CGRectMake(self.frame.origin.x, self.superview.frame.origin.y - OFFSET, self.frame.size.width, self.frame.size.height);
-                }else if(self.frame.origin.y + self.frame.size.height > self.superview.bounds.size.height + OFFSET){
-                    self.direction *= M_PI;
-                    self.frame = CGRectMake(self.frame.origin.x, self.superview.bounds.size.height - self.frame.size.height + OFFSET, self.frame.size.width, self.frame.size.height);
-                }
-                
+                                
                 [self checkCollisions];
             });
 
@@ -170,6 +153,12 @@
                 }else{
 //                    ball.speed *= BALL_INCREASE_FACTOR;
                 }
+            }
+        }else if([view isKindOfClass:[WallView class]]){
+            WallView *wall = (WallView *)view;
+            if(CGRectIntersectsRect(self.frame, wall.frame)){
+                self.direction *= M_PI;
+                // TODO: Adjust frame to be outside of wall
             }
         }
     }
