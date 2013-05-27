@@ -11,6 +11,5 @@
 
 @interface BallView : UIView
 @property (nonatomic) CGFloat speed;
-@property (nonatomic) BOOL bounceTop;
 @property (nonatomic) CGFloat direction; // Angle in radians
 @end

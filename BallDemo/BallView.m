@@ -51,7 +51,6 @@
         
         [moveGesture requireGestureRecognizerToFail:tapGesture];
         
-        self.bounceTop = YES;
     }
     return self;
 }
