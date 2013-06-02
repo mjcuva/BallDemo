@@ -156,8 +156,16 @@
         }else if([view isKindOfClass:[WallView class]]){
             WallView *wall = (WallView *)view;
             if(CGRectIntersectsRect(self.frame, wall.frame)){
+                CGRect intersect = CGRectIntersection(self.frame, wall.frame);
+                NSLog(@"Origin:%f %f, Size:%f %f", intersect.origin.x, intersect.origin.y, intersect.size.width, intersect.size.height);
+                NSLog(@"Origin:%f %f, Size:%f %f", self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
                 self.direction *= M_PI;
-                // TODO: Adjust frame to be outside of wall
+                
+                // Checks if collision is on left of ball.
+                if(intersect.origin.x - self.frame.origin.x == 0 && intersect.origin.y - self.frame.origin.y == 0 && intersect.size.height > intersect.size.width){
+                    // TODO: Needs to be readjusted to work with all walls, not just walls on edge of superview
+                    self.frame = CGRectMake(self.superview.frame.origin.x + wall.frame.size.width, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+                }
             }
         }
     }
