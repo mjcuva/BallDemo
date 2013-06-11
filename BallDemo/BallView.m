@@ -133,9 +133,15 @@
                     [self checkEdgeBounce];
                 }
             });
-
         }
         self.speed = 0;
+        if(!CGRectIntersectsRect(self.frame, [[UIScreen mainScreen] applicationFrame])){
+            // Remove view if non-visable
+            // TODO: Sometimes issue where ball doesn't follow the remove gesture
+            NSLog(@"Remove");
+            [self removeFromSuperview];
+        }
+
     });
 }
 
