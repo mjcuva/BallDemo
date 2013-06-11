@@ -33,7 +33,6 @@
         [self move];
 }
 
-
 #pragma mark - Initialization
 
 - (id)initWithFrame:(CGRect)frame
@@ -53,6 +52,13 @@
         
     }
     return self;
+}
+
+// Designated initializer with edge bounce
+- (id)initWithFrame:(CGRect)frame
+      andEdgeBounce:(BOOL)edgeBounce{
+    self.edgeBounceEnabled = edgeBounce;
+    return [self initWithFrame:frame];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -102,8 +108,6 @@
 
 #pragma mark - Movement
 
-#define OFFSET 50
-
 - (void)move{
     dispatch_queue_t movementQueue = dispatch_queue_create("Move", NULL);
     dispatch_async(movementQueue, ^{
@@ -124,6 +128,10 @@
                     increaseFactor += .08;
                                 
                 [self checkCollisions];
+                
+                if(self.edgeBounceEnabled){
+                    [self checkEdgeBounce];
+                }
             });
 
         }
@@ -168,6 +176,26 @@
                 }
             }
         }
+    }
+}
+
+#define OFFSET 50
+
+- (void)checkEdgeBounce{
+    if(self.frame.origin.x < self.superview.frame.origin.x - OFFSET){
+        self.direction *= M_PI;
+        self.frame = CGRectMake(self.superview.frame.origin.x - OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+    }else if(self.frame.origin.x + self.frame.size.width > self.superview.frame.size.width + OFFSET){
+        self.direction *= M_PI;
+        self.frame = CGRectMake(self.superview.frame.size.width - self.frame.size.width + OFFSET, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+    }
+    
+    if(self.frame.origin.y < self.superview.frame.origin.y - OFFSET){
+        self.direction *= M_PI;
+        self.frame = CGRectMake(self.frame.origin.x, self.superview.frame.origin.y - OFFSET, self.frame.size.width, self.frame.size.height);
+    }else if(self.frame.origin.y + self.frame.size.height > self.superview.frame.size.height + OFFSET){
+        self.direction *= M_PI;
+        self.frame = CGRectMake(self.frame.origin.x, self.superview.frame.size.height - self.frame.size.height + OFFSET, self.frame.size.width, self.frame.size.height);
     }
 }
 

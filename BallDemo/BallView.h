@@ -12,4 +12,10 @@
 @interface BallView : UIView
 @property (nonatomic) CGFloat speed;
 @property (nonatomic) CGFloat direction; // Angle in radians
+@property (nonatomic) BOOL edgeBounceEnabled; // Defaults to YES
+
+// Designated initializer
+- (id)initWithFrame:(CGRect)frame
+      andEdgeBounce:(BOOL)edgeBounce;
+
 @end
